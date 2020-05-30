@@ -18,13 +18,19 @@ const assert = require('assert');
 const index = require('../src/index.js').main;
 
 describe('Index Tests', () => {
-  it('index function is present', async () => {
-    const result = await index({});
-    assert.deepEqual(result, { body: 'Hello, world.' });
-  });
+  it('Index function creates Posts', async () => {
+    const result = await index({
+      __ow_path: '/trieloff/helix-demo/master',
+      __ow_headers: {
+        authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      },
+      'post-status': 'draft',
+      h: 'entry',
+      content: `# Hello World
 
-  it('index function returns an object', async () => {
-    const result = await index();
-    assert.equal(typeof result, 'object');
-  });
+This is a test`,
+    });
+
+    assert.equal(result.statusCode, 204, result.body);
+  }).timeout(20000);
 });
