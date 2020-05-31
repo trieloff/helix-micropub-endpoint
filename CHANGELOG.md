@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.4.2...v1.4.3) (2020-05-31)
+
+
+### Bug Fixes
+
+* **micropub:** make responses look more like micro.blog ([6e8456a](https://github.com/trieloff/helix-micropub-endpoint/commit/6e8456afb9d29d9153fda20c759a6a8a241133b3))
+
 ## [1.4.2](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.4.1...v1.4.2) (2020-05-31)
 
 
