@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.4.0...v1.4.1) (2020-05-31)
+
+
+### Bug Fixes
+
+* **index:** always return JSON for config requests ([8654abb](https://github.com/trieloff/helix-micropub-endpoint/commit/8654abba903171e3615711c1d401ddc1565b0e4e))
+
 # [1.4.0](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.3.0...v1.4.0) (2020-05-31)
 
 
