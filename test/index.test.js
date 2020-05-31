@@ -38,12 +38,38 @@ This is a test`,
       __ow_path: '/trieloff/helix-demo/master',
       __ow_method: 'get',
       __ow_headers: {
-        authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       },
     });
 
     assert.equal(result.statusCode, 200, result.body);
     assert.equal(result.headers.link, '<https://adobeioruntime.net/api/v1/web/trieloff/helix-micropub/publish@v1/trieloff/helix-demo/master>; rel="micropub"');
+  }).timeout(20000);
+
+  it('Index shows config on GET ?q=config', async () => {
+    const result = await index({
+      __ow_path: '/trieloff/helix-demo/master',
+      __ow_method: 'get',
+      __ow_headers: {
+      },
+      q: 'config',
+    });
+
+    assert.equal(result.statusCode, 200, result.body);
+    assert.ok(Array.isArray(result.body.destination), JSON.stringify(result.body));
+  }).timeout(20000);
+
+  it('Index shows config on GET ?q=config as JSON when JSON has been requested', async () => {
+    const result = await index({
+      __ow_path: '/trieloff/helix-demo/master',
+      __ow_method: 'get',
+      __ow_headers: {
+        accept: 'application/json',
+      },
+      q: 'config',
+    });
+
+    assert.equal(typeof result, 'object', result);
+    assert.ok(Array.isArray(result.destination), JSON.stringify(result));
   }).timeout(20000);
 
   it('Index function creates drafts', async () => {

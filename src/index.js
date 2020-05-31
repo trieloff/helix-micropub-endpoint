@@ -28,12 +28,40 @@ async function main(params) {
     const year = new Date().getUTCFullYear();
     const {
       // eslint-disable-next-line camelcase
-      __ow_path, h, content, __ow_headers: { authorization }, __ow_method,
+      __ow_path, h, content, __ow_headers: { authorization, accept }, __ow_method, q,
     } = params;
 
     const [owner, repo, base] = __ow_path.replace(/^\//, '').split('/');
 
 
+    if (q === 'config') {
+      // workaround for IA Writer
+      if (accept === 'application/json') {
+        return {
+          destination: [{
+            uid: `https://github.com/${owner}/${repo}`,
+            name: `${owner}/${repo} on GitHub via Helix`,
+          }],
+          'post-types': [
+            { type: 'note', name: 'Post' }],
+        };
+      }
+
+      return {
+        statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: {
+          destination: [{
+            uid: `https://github.com/${owner}/${repo}`,
+            name: `${owner}/${repo} on GitHub via Helix`,
+          }],
+          'post-types': [
+            { type: 'note', name: 'Post' }],
+        },
+      };
+    }
     if (__ow_method === 'get') {
       return {
         statusCode: 200,
@@ -44,7 +72,7 @@ async function main(params) {
         body: `<html>
   <head>
     <title>Helix MicroPub Endpoint</title>
-    <link rel="micropub" href="https://adobeioruntime.net/api/v1/web/trieloff/helix-micropub/publish@v1/${owner}/${repo}/${base}">
+    <link rel="micropub" href="https://adobeioruntime.net/api/v1/web/trieloff/helix-micropub/publish@v1.json/${owner}/${repo}/${base}">
   </head>
   <body>
     This is a <a href="https://www.w3.org/TR/micropub/">Micropub</a> endpoint. It expects <code>POST</code>
