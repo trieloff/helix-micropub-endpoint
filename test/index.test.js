@@ -88,6 +88,28 @@ This is a test`,
     assert.equal(result.statusCode, 201, result.body);
   }).timeout(20000);
 
+  it('Index function creates drafts from JSON', async () => {
+    // captured from Proxie
+    const body = {
+      type: ['h-entry'],
+      properties: {
+        name: ['Testy test'],
+        content: ['Testy test.'],
+        'post-status': ['draft'],
+      },
+    };
+
+    const result = await index({
+      __ow_path: '/trieloff/helix-demo/master',
+      __ow_headers: {
+        authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      },
+      ...body,
+    });
+
+    assert.equal(result.statusCode, 201, result.body);
+  }).timeout(20000);
+
   it('Index function creates posts', async () => {
     const result = await index({
       __ow_path: '/trieloff/helix-demo/master',

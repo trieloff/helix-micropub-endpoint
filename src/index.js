@@ -15,7 +15,30 @@ const { wrap: statusCheck } = require('@adobe/helix-status');
 const { epsagon } = require('@adobe/helix-epsagon');
 const { Octokit } = require('@octokit/rest');
 
-/* eslint-disable camelcase */
+/* eslint-disable camelcase, no-param-reassign */
+
+/**
+ * Turn Microformats-like JSON into regular JSON
+ * @param {*} params
+ */
+function cleanup(params) {
+  return Object.entries(params).reduce((clean, [key, value]) => {
+    if (key.startsWith('__')) {
+      // pass through
+      clean[key] = value;
+    } else if (key === 'type' && Array.isArray(value) && value.length === 1 && value[0].startsWith('h-')) {
+      clean.h = value[0].substring(2);
+    } else if (Array.isArray(value) && value.length === 1) {
+      const [myval] = value;
+      clean[key] = myval;
+    } else if (key === 'properties') {
+      return Object.assign(clean, cleanup(value));
+    } else {
+      clean[key] = value;
+    }
+    return clean;
+  }, {});
+}
 
 /**
  * This is the main function
@@ -26,10 +49,11 @@ async function main(params) {
   try {
     const now = Math.round((new Date()).getTime() / 1000);
     const year = new Date().getUTCFullYear();
+
     const {
       // eslint-disable-next-line camelcase
       __ow_path, h, content, __ow_headers: { authorization, accept }, __ow_method, q,
-    } = params;
+    } = cleanup(params);
 
     const [owner, repo, base] = __ow_path.replace(/^\//, '').split('/');
 
