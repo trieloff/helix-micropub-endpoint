@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.2.0...v1.2.1) (2020-05-31)
+
+
+### Bug Fixes
+
+* **micropub:** remove space from discovery link ([0a0ddde](https://github.com/trieloff/helix-micropub-endpoint/commit/0a0dddebe706a58ca6561cedad2c3fe385e25647))
+
 # [1.2.0](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.1.1...v1.2.0) (2020-05-31)
 
 
