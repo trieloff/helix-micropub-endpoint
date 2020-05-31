@@ -48,7 +48,7 @@ async function main(params) {
     const mybranch = await github.repos.getBranch({ owner, repo, branch: base });
     const { sha } = mybranch.data.commit;
 
-    const head = status === 'draft' ? `new-post-${now}` : base;
+    const head = status === 'draft' ? `newpost-${now}` : base;
     const ref = status === 'draft' ? `refs/heads/${head}` : `refs/heads/${base}`;
 
     if (status === 'draft') {
@@ -61,12 +61,15 @@ async function main(params) {
       });
     }
 
+    const path = `${year}/post-${now}.md`;
+    const html = `${year}/post-${now}.html`;
+
     // update the file
     await github.repos.createOrUpdateFile({
       owner,
       repo,
       branch: head,
-      path: `${year}/post-${now}.md`,
+      path,
       content: Buffer.from(content).toString('base64'),
       committer: {
         name: user.name,
@@ -85,7 +88,9 @@ async function main(params) {
         owner,
         repo,
         title: `New Blog Post ${new Date().toLocaleDateString()}`,
-        body: 'Please review my new blog post',
+        body: `Please review my [new blog post](https://${head}--${repo}--${owner}.hlx.page/${html})
+        
+Just approve this PR to get the post published at https://${repo}-${owner}.hlx.page/${html}`,
         base,
         head,
       });
