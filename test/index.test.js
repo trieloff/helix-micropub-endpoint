@@ -33,6 +33,19 @@ This is a test`,
     assert.equal(result.statusCode, 400, result.body);
   }).timeout(20000);
 
+  it('Index shows documentation on GET', async () => {
+    const result = await index({
+      __ow_path: '/trieloff/helix-demo/master',
+      __ow_method: 'get',
+      __ow_headers: {
+        authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      },
+    });
+
+    assert.equal(result.statusCode, 200, result.body);
+    assert.equal(result.headers.link, '<https://adobeioruntime.net/api/v1/web/trieloff/helix-micropub/publish@v1/trieloff/helix-demo/master>; rel="micropub"');
+  }).timeout(20000);
+
   it('Index function creates drafts', async () => {
     const result = await index({
       __ow_path: '/trieloff/helix-demo/master',

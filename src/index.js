@@ -15,6 +15,8 @@ const { wrap: statusCheck } = require('@adobe/helix-status');
 const { epsagon } = require('@adobe/helix-epsagon');
 const { Octokit } = require('@octokit/rest');
 
+/* eslint-disable camelcase */
+
 /**
  * This is the main function
  * @param {string} name name of the person to greet
@@ -26,8 +28,31 @@ async function main(params) {
     const year = new Date().getUTCFullYear();
     const {
       // eslint-disable-next-line camelcase
-      __ow_path, h, content, __ow_headers: { authorization },
+      __ow_path, h, content, __ow_headers: { authorization }, __ow_method,
     } = params;
+
+    const [owner, repo, base] = __ow_path.replace(/^\//, '').split('/');
+
+
+    if (__ow_method === 'get') {
+      return {
+        statusCode: 200,
+        headers: {
+          'content-type': 'text/html',
+          link: `<https://adobeioruntime.net/api/v1/web/trieloff/helix-micropub/publish@v1/${owner}/${repo}/${base}>; rel="micropub"`,
+        },
+        body: `<html>
+  <head>
+    <title>Helix MicroPub Endpoint</title>
+    <link rel="micropub" href=" https://adobeioruntime.net/api/v1/web/trieloff/helix-micropub/publish@v1/${owner}/${repo}/${base}">
+  </head>
+  <body>
+    This is a <a href="https://www.w3.org/TR/micropub/">Micropub</a> endpoint. It expects <code>POST</code>
+    requests.
+  </body>
+</html>`,
+      };
+    }
 
     if (h !== 'entry') {
       return {
@@ -36,7 +61,6 @@ async function main(params) {
       };
     }
     const status = params['post-status'] || 'published'; // default is published
-    const [owner, repo, base] = __ow_path.replace(/^\//, '').split('/');
 
     const auth = authorization.split(' ').pop();
 
