@@ -48,7 +48,7 @@ async function main(params) {
     const mybranch = await github.repos.getBranch({ owner, repo, branch: base });
     const { sha } = mybranch.data.commit;
 
-    const head = `new-post-${now}`;
+    const head = status === 'draft' ? `new-post-${now}` : base;
     const ref = status === 'draft' ? `refs/heads/${head}` : `refs/heads/${base}`;
 
     if (status === 'draft') {

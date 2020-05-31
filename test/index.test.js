@@ -18,13 +18,43 @@ const assert = require('assert');
 const index = require('../src/index.js').main;
 
 describe('Index Tests', () => {
-  it('Index function creates Posts', async () => {
+  it('Index function rejects unknown types', async () => {
     const result = await index({
       __ow_path: '/trieloff/helix-demo/master',
       __ow_headers: {
         authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       },
       'post-status': 'draft',
+      content: `# Hello World
+
+This is a test`,
+    });
+
+    assert.equal(result.statusCode, 400, result.body);
+  }).timeout(20000);
+
+  it('Index function creates drafts', async () => {
+    const result = await index({
+      __ow_path: '/trieloff/helix-demo/master',
+      __ow_headers: {
+        authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      },
+      'post-status': 'draft',
+      h: 'entry',
+      content: `# Hello World
+
+This is a test`,
+    });
+
+    assert.equal(result.statusCode, 204, result.body);
+  }).timeout(20000);
+
+  it('Index function creates posts', async () => {
+    const result = await index({
+      __ow_path: '/trieloff/helix-demo/master',
+      __ow_headers: {
+        authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      },
       h: 'entry',
       content: `# Hello World
 
