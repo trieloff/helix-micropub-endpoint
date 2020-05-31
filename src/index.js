@@ -61,12 +61,15 @@ async function main(params) {
       });
     }
 
+    const path = `${year}/post-${now}.md`;
+    const html = `${year}/post-${now}.html`;
+
     // update the file
     await github.repos.createOrUpdateFile({
       owner,
       repo,
       branch: head,
-      path: `${year}/post-${now}.md`,
+      path,
       content: Buffer.from(content).toString('base64'),
       committer: {
         name: user.name,
@@ -85,7 +88,9 @@ async function main(params) {
         owner,
         repo,
         title: `New Blog Post ${new Date().toLocaleDateString()}`,
-        body: 'Please review my new blog post',
+        body: `Please review my [new blog post](https://${repo}-${owner}--${head}.hlx.page/${html})
+        
+Just approve this PR to get the post published at https://${repo}-${owner}.hlx.page/${html}`,
         base,
         head,
       });
