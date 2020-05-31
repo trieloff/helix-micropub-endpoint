@@ -50,7 +50,7 @@ Hello world from CircleCI. This is build # ${process.env.CIRCLE_BUILD_NUM}
 `,
       })
       .then((response) => {
-        expect(response).to.have.status(204);
+        expect(response).to.have.status(201);
       })
       .catch((e) => {
         throw e;

@@ -46,7 +46,7 @@ This is a test`,
 This is a test`,
     });
 
-    assert.equal(result.statusCode, 204, result.body);
+    assert.equal(result.statusCode, 201, result.body);
   }).timeout(20000);
 
   it('Index function creates posts', async () => {
@@ -61,6 +61,6 @@ This is a test`,
 This is a test`,
     });
 
-    assert.equal(result.statusCode, 204, result.body);
+    assert.equal(result.statusCode, 201, result.body);
   }).timeout(20000);
 });

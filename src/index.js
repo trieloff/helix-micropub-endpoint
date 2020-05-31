@@ -96,7 +96,7 @@ Just approve this PR to get the post published at https://${repo}-${owner}.hlx.p
       });
 
       return {
-        statusCode: '204',
+        statusCode: 201,
         headers: {
           // eslint-disable-next-line no-underscore-dangle
           Location: result.data._links.html.href,
@@ -106,7 +106,7 @@ Just approve this PR to get the post published at https://${repo}-${owner}.hlx.p
     }
 
     return {
-      statusCode: '204',
+      statusCode: 201,
       headers: {
         Location: `https://github.com/${owner}/${repo}/blob/${base}/${year}/post-${now}.md`,
       },
