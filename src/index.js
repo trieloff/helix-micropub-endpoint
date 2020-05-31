@@ -44,7 +44,7 @@ async function main(params) {
         body: `<html>
   <head>
     <title>Helix MicroPub Endpoint</title>
-    <link rel="micropub" href=" https://adobeioruntime.net/api/v1/web/trieloff/helix-micropub/publish@v1/${owner}/${repo}/${base}">
+    <link rel="micropub" href="https://adobeioruntime.net/api/v1/web/trieloff/helix-micropub/publish@v1/${owner}/${repo}/${base}">
   </head>
   <body>
     This is a <a href="https://www.w3.org/TR/micropub/">Micropub</a> endpoint. It expects <code>POST</code>
