@@ -166,21 +166,26 @@ Just approve this PR to get the post published at https://${repo}-${owner}.hlx.p
       });
 
       return {
-        statusCode: 201,
+        statusCode: 202,
         headers: {
           // eslint-disable-next-line no-underscore-dangle
           Location: result.data._links.html.href,
         },
-        body: 'post created.',
+        body: {
+          url: result.data._links.html.href,
+          preview: `https://${head}--${repo}--${owner}.hlx.page/${html}`
+        },
       };
     }
 
     return {
-      statusCode: 201,
+      statusCode: 202,
       headers: {
         Location: `https://github.com/${owner}/${repo}/blob/${base}/${year}/post-${now}.md`,
       },
-      body: 'post created.',
+      body: {
+        url: `https://github.com/${owner}/${repo}/blob/${base}/${year}/post-${now}.md`
+      },
     };
   } catch (e) {
     return {
