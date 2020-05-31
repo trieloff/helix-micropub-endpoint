@@ -14,8 +14,25 @@ const { logger } = require('@adobe/openwhisk-action-logger');
 const { wrap: statusCheck } = require('@adobe/helix-status');
 const { epsagon } = require('@adobe/helix-epsagon');
 const { Octokit } = require('@octokit/rest');
+const remark = require('remark');
+const strip = require('strip-markdown');
+const GithubSlugger = require('github-slugger');
+
+const slugger = new GithubSlugger();
 
 /* eslint-disable camelcase, no-param-reassign */
+
+function plain(markdown) {
+  return remark()
+    .use(strip)
+    .processSync(markdown)
+    .contents;
+}
+
+function slug(markdown, now) {
+  const first = plain(markdown).split('\n').find((line) => line.trim() !== '');
+  return slugger.slug(`${first}-${now}`);
+}
 
 /**
  * Turn Microformats-like JSON into regular JSON
@@ -131,8 +148,8 @@ async function main(params) {
       });
     }
 
-    const path = `${year}/post-${now}.md`;
-    const html = `${year}/post-${now}.html`;
+    const path = `${year}/${slug(content, now)}.md`;
+    const html = `${year}/${slug(content, now)}.html`;
 
     // update the file
     await github.repos.createOrUpdateFile({
@@ -195,6 +212,8 @@ Just approve this PR to get the post published at https://${repo}-${owner}.hlx.p
     };
   }
 }
+
+module.exports = { plain, slug };
 
 module.exports.main = wrap(main)
   .with(epsagon)
