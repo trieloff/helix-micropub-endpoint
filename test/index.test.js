@@ -107,7 +107,9 @@ This is a test`,
       ...body,
     });
 
-    assert.equal(result.statusCode, 202, result.body);
+    assert.equal(result.statusCode, 202, JSON.stringify(result.body));
+    assert.ok(result.body.url, JSON.stringify(result.body));
+    assert.ok(result.body.preview, JSON.stringify(result.body));
   }).timeout(20000);
 
   it('Index function creates posts', async () => {

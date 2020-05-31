@@ -106,7 +106,7 @@ async function main(params) {
         body: `Unknown type ${h}`,
       };
     }
-    const status = params['post-status'] || 'published'; // default is published
+    const status = cleanup(params)['post-status'] || 'published'; // default is published
 
     const auth = authorization.split(' ').pop();
 
