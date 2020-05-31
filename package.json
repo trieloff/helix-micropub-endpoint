@@ -1,6 +1,6 @@
 {
   "name": "@trieloff/helix-micropub-endpoint",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "private": true,
   "description": "Helix MicroPub Endpoint",
   "main": "src/index.js",

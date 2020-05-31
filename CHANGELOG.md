@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.4.3...v1.4.4) (2020-05-31)
+
+
+### Bug Fixes
+
+* **drafts:** drafts now work again for JSON posts ([c789551](https://github.com/trieloff/helix-micropub-endpoint/commit/c7895517b75cc8f59badf2c607bd6fb26b660a5e))
+
 ## [1.4.3](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.4.2...v1.4.3) (2020-05-31)
 
 
