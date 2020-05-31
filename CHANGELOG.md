@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.2.1...v1.3.0) (2020-05-31)
+
+
+### Features
+
+* **index:** show config JSON when requested ([c2d0083](https://github.com/trieloff/helix-micropub-endpoint/commit/c2d0083f3d7fda3ea34b17f8b16c3d00d29030af))
+
 ## [1.2.1](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.2.0...v1.2.1) (2020-05-31)
 
 
