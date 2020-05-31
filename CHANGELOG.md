@@ -1,3 +1,15 @@
+# 1.0.0 (2020-05-31)
+
+
+### Bug Fixes
+
+* **index:** fix posting without drafting ([3aae092](https://github.com/trieloff/helix-micropub-endpoint/commit/3aae09286021136dfbebf77ac522a163801603b0))
+
+
+### Features
+
+* **index:** basic micropub implementation ([76c4faf](https://github.com/trieloff/helix-micropub-endpoint/commit/76c4faf744f3808c88760b8af2bdfa96d72b1136))
+
 ## [1.8.30](https://github.com/adobe/helix-service/compare/v1.8.29...v1.8.30) (2020-05-26)
 
 
