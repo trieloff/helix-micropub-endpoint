@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.0.0...v1.1.0) (2020-05-31)
+
+
+### Bug Fixes
+
+* **drafts:** fix preview links ([bd82f42](https://github.com/trieloff/helix-micropub-endpoint/commit/bd82f4247fe5fabf88248dcb2d41f34ce183f0d8))
+
+
+### Features
+
+* **drafts:** link to preview in PR description ([95a860b](https://github.com/trieloff/helix-micropub-endpoint/commit/95a860bf86f38db4d254073007e694841ea3cd6f))
+
 # 1.0.0 (2020-05-31)
 
 
