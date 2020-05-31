@@ -172,8 +172,9 @@ Just approve this PR to get the post published at https://${repo}-${owner}.hlx.p
           Location: result.data._links.html.href,
         },
         body: {
+          // eslint-disable-next-line no-underscore-dangle
           url: result.data._links.html.href,
-          preview: `https://${head}--${repo}--${owner}.hlx.page/${html}`
+          preview: `https://${head}--${repo}--${owner}.hlx.page/${html}`,
         },
       };
     }
@@ -184,7 +185,7 @@ Just approve this PR to get the post published at https://${repo}-${owner}.hlx.p
         Location: `https://github.com/${owner}/${repo}/blob/${base}/${year}/post-${now}.md`,
       },
       body: {
-        url: `https://github.com/${owner}/${repo}/blob/${base}/${year}/post-${now}.md`
+        url: `https://github.com/${owner}/${repo}/blob/${base}/${year}/post-${now}.md`,
       },
     };
   } catch (e) {
