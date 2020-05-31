@@ -52,30 +52,24 @@ async function main(params) {
 
     const {
       // eslint-disable-next-line camelcase
-      __ow_path, h, content, __ow_headers: { authorization, accept }, __ow_method, q,
+      __ow_path, h, content, __ow_headers: { authorization }, __ow_method, q,
     } = cleanup(params);
 
     const [owner, repo, base] = __ow_path.replace(/^\//, '').split('/');
 
 
     if (q === 'config') {
-      // workaround for IA Writer
-      if (accept === 'application/json') {
-        return {
-          destination: [{
-            uid: `https://github.com/${owner}/${repo}`,
-            name: `${owner}/${repo} on GitHub via Helix`,
-          }],
-          'post-types': [
-            { type: 'note', name: 'Post' }],
-        };
-      }
-
       return {
         statusCode: 200,
         headers: {
           'content-type': 'application/json',
         },
+        destination: [{
+          uid: `https://github.com/${owner}/${repo}`,
+          name: `${owner}/${repo} on GitHub via Helix`,
+        }],
+        'post-types': [
+          { type: 'note', name: 'Post' }],
         body: {
           destination: [{
             uid: `https://github.com/${owner}/${repo}`,
