@@ -1,4 +1,4 @@
-# Helix MicroPub Endpoint
+# Helix Micropub Endpoint
 
 > A micropub publishing endpoint for Project Helix
 
