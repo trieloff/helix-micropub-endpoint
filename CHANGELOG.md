@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.1.0...v1.1.1) (2020-05-31)
+
+
+### Bug Fixes
+
+* **index:** use correct status code ([c0d90df](https://github.com/trieloff/helix-micropub-endpoint/commit/c0d90dfd2280df7f8f34a70205debcebe26e6433))
+
 # [1.1.0](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.0.0...v1.1.0) (2020-05-31)
 
 
