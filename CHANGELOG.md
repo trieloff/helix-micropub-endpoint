@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.4.1...v1.4.2) (2020-05-31)
+
+
+### Bug Fixes
+
+* **discovery:** remove .json from advertised URL ([28d08bf](https://github.com/trieloff/helix-micropub-endpoint/commit/28d08bfd108bb65500110d2ec45a0f9ec378213c))
+
 ## [1.4.1](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.4.0...v1.4.1) (2020-05-31)
 
 
