@@ -18,7 +18,8 @@
     "deploy-ci": "wsk-builder -v --deploy --test=/_status_check/healthcheck.json --pkgVersion=ci$CIRCLE_BUILD_NUM -l ci"
   },
   "wsk": {
-    "name": "helix-micropub/publish@${version}"
+    "name": "helix-micropub/publish@${version}",
+    "namespace": "trieloff"
   },
   "repository": {
     "type": "git",
