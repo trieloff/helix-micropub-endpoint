@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.1.1...v1.2.0) (2020-05-31)
+
+
+### Features
+
+* **index:** show documentation on GET requests ([d04c45a](https://github.com/trieloff/helix-micropub-endpoint/commit/d04c45a37caa661747188a64035d4c8e56dd9bf5))
+
 ## [1.1.1](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.1.0...v1.1.1) (2020-05-31)
 
 
