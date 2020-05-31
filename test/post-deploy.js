@@ -24,7 +24,7 @@ const { expect } = chai;
 function getbaseurl() {
   const namespace = 'trieloff';
   const package = 'helix-micropub';
-  const name = packjson.name.replace('@trieloff/helix-', '');
+  const name = 'publish';
   let version = `${packjson.version}`;
   if (process.env.CI && process.env.CIRCLE_BUILD_NUM && process.env.CIRCLE_BRANCH !== 'master') {
     version = `ci${process.env.CIRCLE_BUILD_NUM}`;
