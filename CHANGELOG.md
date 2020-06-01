@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.4.4...v1.5.0) (2020-06-01)
+
+
+### Features
+
+* **markdown:** create better file names from first line of markdown ([ee4380d](https://github.com/trieloff/helix-micropub-endpoint/commit/ee4380d1c40a00ccd581455cc741da1e4c3cd7d7))
+
 ## [1.4.4](https://github.com/trieloff/helix-micropub-endpoint/compare/v1.4.3...v1.4.4) (2020-05-31)
 
 
