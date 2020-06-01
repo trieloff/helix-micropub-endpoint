@@ -17,6 +17,7 @@ const { Octokit } = require('@octokit/rest');
 const remark = require('remark');
 const strip = require('strip-markdown');
 const GithubSlugger = require('github-slugger');
+const AWS = require('aws-sdk');
 
 const slugger = new GithubSlugger();
 
@@ -68,6 +69,7 @@ async function main(params) {
     const year = new Date().getUTCFullYear();
 
     const {
+      AWS_KEY,
       // eslint-disable-next-line camelcase
       __ow_path, h, content, __ow_headers: { authorization }, __ow_method, q,
     } = cleanup(params);
@@ -76,6 +78,15 @@ async function main(params) {
 
 
     if (q === 'config') {
+      const s3 = new AWS.S3({
+        signatureVersion: 'v4'
+      });
+
+      const media = await s3.getSignedUrlPromise('putObject', {
+        Bucket: 'helix-micropub-media-endpoint',
+        Key: AWS_KEY,
+      });
+
       return {
         statusCode: 200,
         headers: {
@@ -88,6 +99,7 @@ async function main(params) {
         'post-types': [
           { type: 'note', name: 'Post' }],
         body: {
+          'media-endpoint': media,
           destination: [{
             uid: `https://github.com/${owner}/${repo}`,
             name: `${owner}/${repo} on GitHub via Helix`,
