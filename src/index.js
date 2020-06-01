@@ -76,6 +76,12 @@ async function main(params) {
 
     const [owner, repo, base] = __ow_path.replace(/^\//, '').split('/');
 
+    const auth = authorization.split(' ').pop();
+
+    // assume everything is there
+    const github = new Octokit({ auth, userAgent: 'helix-micropub-endpoint' });
+
+    const user = (await github.users.getAuthenticated()).data;
 
     if (q === 'config') {
       const s3 = new AWS.S3({
@@ -136,13 +142,6 @@ async function main(params) {
       };
     }
     const status = cleanup(params)['post-status'] || 'published'; // default is published
-
-    const auth = authorization.split(' ').pop();
-
-    // assume everything is there
-    const github = new Octokit({ auth, userAgent: 'helix-micropub-endpoint' });
-
-    const user = (await github.users.getAuthenticated()).data;
 
     const mybranch = await github.repos.getBranch({ owner, repo, branch: base });
     const { sha } = mybranch.data.commit;
